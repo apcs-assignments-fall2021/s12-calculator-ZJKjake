@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class Calculator implements ActionListener {
 
@@ -11,7 +12,7 @@ public class Calculator implements ActionListener {
     JButton button1, button2, button3, button4, button5,
             button6, button7, button8, button9, button0,
             buttonDivide, buttonTimes, buttonMinus, buttonPlus,
-            buttonClear, buttonEquals;
+            buttonClear, buttonEquals, buttonPowers;
 
     // Instance variables that will be used for our math
     String op;
@@ -68,14 +69,27 @@ public class Calculator implements ActionListener {
         panel4.add(buttonEquals);
         buttonPlus = new JButton("+");
         panel4.add(buttonPlus);
+        buttonPowers = new JButton("^");
+        panel4.add(buttonPowers);
 
         // Add implemented actionListener method to each button
         button1.addActionListener(this);
         button2.addActionListener(this);
-        // ...
-        // ...
-        // YOUR CODE HERE
-
+        button3.addActionListener(this);
+        button4.addActionListener(this);
+        button5.addActionListener(this);
+        button6.addActionListener(this);
+        button7.addActionListener(this);
+        button8.addActionListener(this);
+        button9.addActionListener(this);
+        button0.addActionListener(this);
+        buttonClear.addActionListener(this);
+        buttonEquals.addActionListener(this);
+        buttonPlus.addActionListener(this);
+        buttonDivide.addActionListener(this);
+        buttonMinus.addActionListener(this);
+        buttonTimes.addActionListener(this);
+        buttonPowers.addActionListener(this);
         // Add panels and everything to the actual frame
         frame.add(field1);
         frame.add(panel1);
@@ -89,15 +103,84 @@ public class Calculator implements ActionListener {
         // 5. Show the frame
         frame.setVisible(true);
     }
-
-    public void actionPerformed(ActionEvent ae) {
+    public void num(ActionEvent ae) {
         String buttonName = ae.getActionCommand();
-
         if (buttonName.equals("1")) {
             field1.setText(field1.getText() + "1");
         }
         else if (buttonName.equals("2")) {
             field1.setText(field1.getText() + "2");
+        }
+        else if (buttonName.equals("3")) {
+            field1.setText(field1.getText() + "3");
+        }
+        else if (buttonName.equals("4")) {
+            field1.setText(field1.getText() + "4");
+        }
+        else if (buttonName.equals("5")) {
+            field1.setText(field1.getText() + "5");
+        }
+        else if (buttonName.equals("6")) {
+            field1.setText(field1.getText() + "6");
+        }
+        else if (buttonName.equals("7")) {
+            field1.setText(field1.getText() + "7");
+        }
+        else if (buttonName.equals("8")) {
+            field1.setText(field1.getText() + "8");
+        }
+        else if (buttonName.equals("9")) {
+            field1.setText(field1.getText() + "9");
+        }
+        else if (buttonName.equals("0")) {
+            field1.setText(field1.getText() + "0");
+        }
+    }
+    public void actionPerformed(ActionEvent aee) {
+        String buttonNamee = aee.getActionCommand();
+        int result=0;
+        num(aee);
+        if (buttonNamee.equals("AC")) {
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("+")) {
+            arg1 = Integer.parseInt(field1.getText());
+            op = "+";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("-")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="-";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("*")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="*";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("/")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="/";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("^")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="^";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("=")) {
+            if(Objects.equals(op, "+")){
+                result += Integer.parseInt(field1.getText())+arg1;}
+            if(Objects.equals(op, "-")){
+                result += Integer.parseInt(field1.getText())-arg1;}
+            if(Objects.equals(op, "*")){
+                result += Integer.parseInt(field1.getText())*arg1;}
+            if(Objects.equals(op, "/")){
+                result += arg1/Double.parseDouble(field1.getText());}
+            if(Objects.equals(op, "^")){
+                result += Math.pow(arg1,Double.parseDouble(field1.getText()));
+            }
+            field1.setText(Integer.toString(result));
         }
     }
 

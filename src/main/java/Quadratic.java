@@ -3,6 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Quadratic {
+    JFrame frame;
+    JPanel formulaPanel,buttonPanel;
+    LTPanel aPanel,bPanel,cPanel,answerPanel;
+    JLabel formulaLabel;
+    JButton clearButton, calculationButton;
     public Quadratic() {
         // Set up the frame
         JFrame frame = new JFrame("Quadratic Formula");
@@ -45,7 +50,7 @@ public class Quadratic {
                 // Potentially a lot of code here
                 // But just add code to call quadForm
 
-                // YOUR CODE HERE
+
             }
         });
 
@@ -58,7 +63,10 @@ public class Quadratic {
     }
 
     public void quadForm() {
-        // YOUR CODE HERE
+        double a= Double.parseDouble(aPanel.getText());
+        double b= Double.parseDouble(bPanel.getText());
+        double c= Double.parseDouble(cPanel.getText());
+        answerPanel.setText(-b+Math.sqrt(b*b-4*a*c)/2*a+"");
     }
 
     public static void main(String[] args) {

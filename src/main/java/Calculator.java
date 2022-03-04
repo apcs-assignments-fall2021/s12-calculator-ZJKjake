@@ -12,7 +12,7 @@ public class Calculator implements ActionListener {
     JButton button1, button2, button3, button4, button5,
             button6, button7, button8, button9, button0,
             buttonDivide, buttonTimes, buttonMinus, buttonPlus,
-            buttonClear, buttonEquals, buttonPowers;
+            buttonClear, buttonEquals, buttonPowers,buttonSqrt, buttonFactorial,buttonSin;
 
     // Instance variables that will be used for our math
     String op;
@@ -71,6 +71,13 @@ public class Calculator implements ActionListener {
         panel4.add(buttonPlus);
         buttonPowers = new JButton("^");
         panel4.add(buttonPowers);
+        buttonSqrt = new JButton("log");
+        panel4.add(buttonSqrt);
+        buttonFactorial = new JButton("!");
+        panel4.add(buttonFactorial);
+        buttonSin = new JButton("sin");
+        panel4.add(buttonSin);
+
 
         // Add implemented actionListener method to each button
         button1.addActionListener(this);
@@ -90,6 +97,9 @@ public class Calculator implements ActionListener {
         buttonMinus.addActionListener(this);
         buttonTimes.addActionListener(this);
         buttonPowers.addActionListener(this);
+        buttonSqrt.addActionListener(this);
+        buttonFactorial.addActionListener(this);
+        buttonSin.addActionListener(this);
         // Add panels and everything to the actual frame
         frame.add(field1);
         frame.add(panel1);
@@ -168,6 +178,21 @@ public class Calculator implements ActionListener {
             op="^";
             field1.setText("");
         }
+        else if (buttonNamee.equals("sqrt")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="sqrt";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("!")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="!";
+            field1.setText("");
+        }
+        else if (buttonNamee.equals("sin")) {
+            arg1=Integer.parseInt(field1.getText());
+            op="sin";
+            field1.setText("");
+        }
         else if (buttonNamee.equals("=")) {
             if(Objects.equals(op, "+")){
                 result += Integer.parseInt(field1.getText())+arg1;}
@@ -179,6 +204,18 @@ public class Calculator implements ActionListener {
                 result += arg1/Double.parseDouble(field1.getText());}
             if(Objects.equals(op, "^")){
                 result += Math.pow(arg1,Double.parseDouble(field1.getText()));
+            }
+            if(Objects.equals(op, "sqrt")){
+                result += Math.sqrt((double)arg1);
+            }
+            if(Objects.equals(op, "!")){
+                result =1;
+                for (int i=1;i<arg1+1;i++){
+                    result=result*i;
+                }
+            }
+            if(Objects.equals(op, "sin")){
+                result+=100*Math.sin(Math.toRadians(arg1));
             }
             field1.setText(Integer.toString(result));
         }
